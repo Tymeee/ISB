@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'googleLogin.dart';
 import 'provider.dart';
 import '../Resources//resources.dart';
-import '../utility.dart';
+import '../Utility/utility.dart';
 
 import 'googleLogin.dart';
 
@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.yellow.shade800,
+      backgroundColor: Color.fromRGBO(255, 200, 87, 1),
       body: Center(
         child: SingleChildScrollView(
           child: Column(

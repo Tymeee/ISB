@@ -1,3 +1,5 @@
+import 'package:app_isb/Resources/resourcesColumn.dart';
+import 'package:app_isb/Utility/utility.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -14,57 +16,68 @@ class _ResourcesState extends State<Resources> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    double bWidth = width * 0.9;
+    double eWidth = width * 0.05;
+
     return Scaffold(
       body: Center(
         child: Container(
           width: width,
           height: height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(0.001, 0.001),
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.white,
-                Colors.white10,
-              ],
-            ),
-          ),
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                box(
-                    width * 0.90,
-                    width * 0.05,
-                    width * 0.05,
-                    'ISB HandBook',
-                    'https://docs.google.com/document/u/2/d/110BTnd-v2lINUbcpApeLjPj7vlSig21Uu7bW9V7m9Io/pub?_ga=2.9863664.492086406.1605949806-1229390941.1605949806',
-                    'assets/student_handbook.PNG'),
-                /*box(
-                    width * 0.90,
-                    width * 0.05,
-                    width * 0.05,
-                    'ISB 20-21 Calendar',
-                    'https://calendar.google.com/calendar/u/0/embed?src=student.isb.ac.th_ar4gntki16dcson2lo4ur92ngg@group.calendar.google.com&ctz=Asia/Bangkok'),*/
-                box(
-                    width * 0.90,
-                    width * 0.05,
-                    width * 0.05,
-                    'Powerschool',
-                    "https://powerschool.isb.ac.th/public/home.html",
-                    'assets/powerschool.PNG'),
-                box(
-                    width * 0.90,
-                    width * 0.05,
-                    width * 0.05,
-                    'Haiku',
-                    "https://isbangkok.learning.powerschool.com",
-                    'assets/haiku.PNG'),
-                box(width * 0.90, width * 0.05, width * 0.05, 'Cialfo',
-                    'https://isbangkok.cialfo.co/signin', 'assets/cialfo.PNG'),
-                /*box(width * 0.90, width * 0.05, width * 0.05, 'CAS Website',
-                    'cas.isb.ac.th'),*/
-                box(width * 0.90, width * 0.05, width * 0.05, 'Library Website',
-                    'https://library.isb.ac.th/home', 'assets/isb_lib.PNG'),
+                ShareItem().SizedBoxCus(10, 10),
+                ResourcesColumn().resourcesColumn(context, 26, 28, 31, 13, 45, 64, 'https://powerschool.isb.ac.th/public/home.html', 'assets/powerschool.PNG', 'POWERSCHOOL'),
+                ResourcesColumn().resourcesColumn(context, 77, 95, 117, 255, 255, 255, 'https://isbangkok.learning.powerschool.com', 'assets/haiku.PNG', 'POWERSCHOOL LEARNING'),
+                Container(
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  width: bWidth,
+                  height: 200,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Color.fromRGBO(255, 200, 87, 1),
+                    ),
+                    child: TextButton (
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Scaffold(
+                              appBar: ShareItem().AppBarCus(context),
+                              body: WebView(
+                                initialUrl: 'https://library.isb.ac.th/home',
+                                javascriptMode: JavascriptMode.unrestricted,
+                              ),
+                            )),
+                          );
+                        },
+                        child: Column(
+                          children: <Widget>[
+                            Container(
+                              height: 140,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/isb_lib.PNG'),
+                                    fit: BoxFit.fill,
+                                  )
+                              ),
+                            ),
+                            ShareItem().SizedBoxCus(10, 5),
+                            Center(
+                              child: Text('LIBRARY RESOURCES', style: TextStyle(color: Colors.white),),
+                            )
+                          ],
+                        )
+                    ),
+                  ),
+                ),
+                ResourcesColumn().resourcesColumn(context, 77, 95, 117, 246, 246, 246, 'https://isbangkok.managebac.com/login', 'assets/manage_bac.PNG', 'MANAGEBAC'),
+                ResourcesColumn().resourcesColumn(context, 77, 95, 117, 255, 255, 255, 'https://isbangkok.cialfo.co/signin', 'assets/cialfo.jpg', 'CIALFO'),
+                ResourcesColumn().resourcesColumn(context, 255, 200, 87, 255, 255, 255, 'https://docs.google.com/document/u/2/d/110BTnd-v2lINUbcpApeLjPj7vlSig21Uu7bW9V7m9Io/pub?_ga=2.9863664.492086406.1605949806-1229390941.1605949806', 'assets/student_handbook.PNG', 'STUDENT HANDBOOK'),
+                ShareItem().SizedBoxCus(10, 10),
               ],
             ),
           ),
@@ -73,37 +86,4 @@ class _ResourcesState extends State<Resources> {
     );
   }
 
-  //Block
-  Widget box(double width, double eLeft, double eRight, String title, String url,
-      String image) =>
-      Container(
-        padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
-        width: width,
-        height: 200,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-            color: Colors.yellow.shade700,
-          ),
-          child: TextButton(
-            onPressed: () {
-              /*name = title;
-              webUrl = url;
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => _WebView()),
-              );*/
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  image: AssetImage('$image'),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-          ),
-        ),
-      );
 }

@@ -4,7 +4,7 @@ import 'login.dart';
 import 'provider.dart';
 import '../Resources/resources.dart';
 import 'package:provider/provider.dart';
-import '../bottomNavigationBar.dart';
+import '../BottomNavigationBar/bottomNavigationBar.dart';
 
 class FirstPage extends StatelessWidget {
   @override

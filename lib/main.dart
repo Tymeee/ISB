@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+    theme: ThemeData(
+      fontFamily: 'HelveticaNeue-Light'
+    ),
     debugShowCheckedModeBanner: false,
     title: 'ISB',
     home: FirstPage(),
