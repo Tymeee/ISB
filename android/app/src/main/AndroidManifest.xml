@@ -2,7 +2,7 @@
     package="com.example.app_isb">
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
    <application
-        android:label="app_isb"
+        android:label="ISB App"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

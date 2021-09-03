@@ -77,6 +77,7 @@ class _ResourcesState extends State<Resources> {
                 ResourcesColumn().resourcesColumn(context, 77, 95, 117, 246, 246, 246, 'https://isbangkok.managebac.com/login', 'assets/manage_bac.PNG', 'MANAGEBAC'),
                 ResourcesColumn().resourcesColumn(context, 77, 95, 117, 255, 255, 255, 'https://isbangkok.cialfo.co/signin', 'assets/cialfo.jpg', 'CIALFO'),
                 ResourcesColumn().resourcesColumn(context, 255, 200, 87, 255, 255, 255, 'https://docs.google.com/document/u/2/d/110BTnd-v2lINUbcpApeLjPj7vlSig21Uu7bW9V7m9Io/pub?_ga=2.9863664.492086406.1605949806-1229390941.1605949806', 'assets/student_handbook.PNG', 'STUDENT HANDBOOK'),
+                ResourcesColumn().resourcesColumn(context, 255, 200, 87, 255, 255, 255, 'https://docs.google.com/forms/d/e/1FAIpQLSerun_qoavp0LdL2K0LXO-9Cck2uH4K-_Cd9neJ2-cxqT76KA/viewform', 'assets/stuco.png', 'STUCO'),
                 ShareItem().SizedBoxCus(10, 10),
               ],
             ),

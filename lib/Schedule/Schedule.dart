@@ -5,6 +5,7 @@ import 'package:app_isb/Utility/utility.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Schedule extends StatefulWidget {
   @override
@@ -15,22 +16,45 @@ class _ScheduleState extends State<Schedule> {
 
   final orderClass = [User("Free", "", "", "", "N/A"), User("Free", "", "", "", "N/A"), User("Free", "", "", "", "N/A"), User("Free", "", "", "", "N/A"), User("Free", "", "", "", "N/A")];
 
+  String y = DateFormat.y('en_US').format(DateTime.now());
+  String M = DateFormat.M('en_US').format(DateTime.now());
+  String d = DateFormat.d('en_US').format(DateTime.now());
+  String yMd;
+
+  void getDate() async {
+    print("$M/$d/$y");
+    int uM = int.parse(M);
+    int uD = int.parse(d);
+    print("$uM/$uD/$y");
+    String uuM = M;
+    String uuD = d;
+    if(uM < 10){
+      uuM = "0" + M;
+    }
+    if(uD < 10){
+      uuD = "0" + d;
+    }
+    yMd = ("$uuM/$uuD/$y");
+    print(yMd);
+  }
+
   getData() async{
-    var url = Uri.parse("http://54.255.62.155/getsqli.php?stuId=" + googleAPI.id + "&date=" + "03/03/2021");
+    //var url = Uri.parse("http://54.255.62.155/getsqli.php?stuId=" + googleAPI.id + "&date=" + yMMMMD);
+    var url = Uri.parse("http://54.255.62.155/sornjget.php?&date=" + yMd);
     final post = await http.get(url);
     var data = json.decode(post.body);
     List<User> users = [];
     for(var u in data){
-      User user = User(u["SUBJECT"], u["START_TIME"], u["END_TIME"], u["DESCRIPTION"], u["LOCATION"]);
-      if(user.SUBJECT != "Advisory"){
+      User user = User(u["Subject"], u["Start_Time"], u["End_Time"], u["Description"], u["Location"]);
+      if(user.Subject != "Advisory"){
         users.add(user);
-        if(user.START_TIME == "07:45"){
+        if(user.Start_Time == "09:00"){
           orderClass[0] = user;
-        } else if(user.START_TIME == "09:15"){
+        } else if(user.Start_Time == "10:15"){
           orderClass[1] = user;
-        } else if(user.START_TIME == "11:55"){
+        } else if(user.Start_Time == "12:30"){
           orderClass[2] = user;
-        } else if(user.START_TIME == "13:25"){
+        } else if(user.Start_Time == "13:45"){
           orderClass[3] = user;
         }
       }
@@ -48,6 +72,8 @@ class _ScheduleState extends State<Schedule> {
     double bWidth = width * 0.9;
     double eWidth = width * 0.05;
 
+    getDate();
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.fromLTRB(eWidth, 0, eWidth, 0),
@@ -59,7 +85,7 @@ class _ScheduleState extends State<Schedule> {
               ShareItem().SizedBoxCus(10, 10),
               sContainer("Advisory", "09:15 - 09:30"),
               ShareItem().SizedBoxCus(10, 10),
-              sContainer("Snack", "09:30 - 09:50"),
+              sContainer("Break", "09:30 - 09:50"),
               ShareItem().SizedBoxCus(10, 10),
               classes(1,"09:50 - 11:10"),
               ShareItem().SizedBoxCus(10, 10),
@@ -117,8 +143,8 @@ class _ScheduleState extends State<Schedule> {
                 ),
                 child: Center(
                   child: ListTile(
-                    title: Text(orderClass[list].SUBJECT, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
-                    subtitle: Text(orderClass[list].LOCATION, style: TextStyle(fontSize: 15, color: Colors.black),),
+                    title: Text(orderClass[list].Subject, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
+                    subtitle: Text(orderClass[list].Location, style: TextStyle(fontSize: 15, color: Colors.black),),
                     trailing: Text(time,style: TextStyle(fontSize: 15,),),
                   ),
                 )

@@ -38,6 +38,7 @@ class _AnnouncementState extends State<Announcement>{
     String localPath;
 
     String yMMMMD = DateFormat.yMMMMd('en_US').format(DateTime.now());
+    String yMD = DateFormat.yMd('en_US').format(DateTime.now());
     String abbrDay = DateFormat.E('en_US').format(DateTime.now());
 
     return Scaffold(
@@ -64,7 +65,7 @@ class _AnnouncementState extends State<Announcement>{
                 )
               ),
               ShareItem().SizedBoxCus(10, 20),
-              Align(
+             /* Align(
                 alignment: Alignment.centerLeft,
                 child: Text("AQI Monitor", style: TextStyle(fontSize: 17),),
               ),
@@ -76,7 +77,7 @@ class _AnnouncementState extends State<Announcement>{
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              ShareItem().SizedBoxCus(10, 20),
+              ShareItem().SizedBoxCus(10, 20),*/
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text("HS Daily Announcement", style: TextStyle(fontSize: 17),),
