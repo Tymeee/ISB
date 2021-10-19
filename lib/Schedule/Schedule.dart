@@ -22,10 +22,8 @@ class _ScheduleState extends State<Schedule> {
   String yMd;
 
   void getDate() async {
-    print("$M/$d/$y");
     int uM = int.parse(M);
     int uD = int.parse(d);
-    print("$uM/$uD/$y");
     String uuM = M;
     String uuD = d;
     if(uM < 10){
@@ -35,26 +33,24 @@ class _ScheduleState extends State<Schedule> {
       uuD = "0" + d;
     }
     yMd = ("$uuM/$uuD/$y");
-    print(yMd);
   }
 
   getData() async{
-    //var url = Uri.parse("http://54.255.62.155/getsqli.php?stuId=" + googleAPI.id + "&date=" + yMMMMD);
-    var url = Uri.parse("http://54.255.62.155/sornjget.php?&date=" + yMd);
+    var url = Uri.parse("http://54.255.62.155/getsqli.php?stuId=" + googleAPI.id + "&date=" + yMd);
     final post = await http.get(url);
     var data = json.decode(post.body);
     List<User> users = [];
     for(var u in data){
-      User user = User(u["Subject"], u["Start_Time"], u["End_Time"], u["Description"], u["Location"]);
+      User user = User(u["SUBJECT"], u["START_TIME"], u["END_TIME"], u["DESCRIPTION"], u["LOCATION"]);
       if(user.Subject != "Advisory"){
         users.add(user);
-        if(user.Start_Time == "09:00"){
+        if(user.Start_Time == "07:50"){
           orderClass[0] = user;
-        } else if(user.Start_Time == "10:15"){
+        } else if(user.Start_Time == "09:50"){
           orderClass[1] = user;
-        } else if(user.Start_Time == "12:30"){
+        } else if(user.Start_Time == "11:20"){
           orderClass[2] = user;
-        } else if(user.Start_Time == "13:45"){
+        } else if(user.Start_Time == "13:20"){
           orderClass[3] = user;
         }
       }
