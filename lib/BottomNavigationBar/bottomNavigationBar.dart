@@ -99,7 +99,7 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
                     trailing: Icon(Icons.person_outline_sharp, color: Colors.black,),
                     title: Text("About Us", style: TextStyle(fontSize: 17, color: Colors.black)),
                     onTap: () async {
-                      final url = 'http://54.255.62.155/uploads/About_Us_Page.pdf';
+                      final url = 'https://communicationapp.isb.ac.th/uploads/About_Us_Page.pdf';
                       await PDFApi().loadNetwork(url, 'About Us').then((value) {
                         setState(() {
                           localPath = value;
@@ -112,7 +112,8 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
                           appBar: ShareItem().AppBarCus(context),
                           body: localPath != null ? PDFView(
                             filePath: localPath,
-                            fitPolicy: FitPolicy.HEIGHT,
+                            fitPolicy: FitPolicy.WIDTH,
+                            pageSnap: true,
                           )
                               : Center(
                             child: CircularProgressIndicator(),
