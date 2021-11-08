@@ -34,9 +34,8 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.app_isb"
-        minSdkVersion 19
-        //multiDexEnable true
+        applicationId "th.ac.isb.communicationapp.app_isb"
+        minSdkVersion 20
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -47,8 +46,6 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
-            shrinkResources false
-            minifyEnabled false
         }
     }
 }
@@ -59,8 +56,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation platform('com.google.firebase:firebase-bom:26.8.0')
-    //implementation 'com.android.support.:multidex1.0.3'
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
 }
-
 apply plugin: 'com.google.gms.google-services'

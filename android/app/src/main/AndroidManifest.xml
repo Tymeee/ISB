@@ -1,8 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_isb">
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    package="th.ac.isb.communicationapp.app_isb">
    <application
-        android:label="ISB App"
+        android:label="app_isb"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
@@ -39,4 +38,5 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
