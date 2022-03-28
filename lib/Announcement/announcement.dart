@@ -137,8 +137,7 @@ class _AnnouncementState extends State<Announcement> {
                                                       ? PDFView(
                                                           filePath: localPath,
                                                           fitPolicy:
-                                                              FitPolicy.WIDTH,
-                                                          pageSnap: true,
+                                                              FitPolicy.HEIGHT,
                                                         )
                                                       : Center(
                                                           child:

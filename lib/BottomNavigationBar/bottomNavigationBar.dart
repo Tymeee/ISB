@@ -25,7 +25,12 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
     ClassPage(),
   ];
 
-  List<String> titleName = ["ANNOUNCEMENT", "SCHEDULE", "RESOURCES", "CLASS PAGE"];
+  List<String> titleName = [
+    "ANNOUNCEMENT",
+    "SCHEDULE",
+    "RESOURCES",
+    "CLASS PAGE"
+  ];
 
   void tapIndex(int index) {
     setState(() {
@@ -35,7 +40,6 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
@@ -52,19 +56,26 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
             backgroundColor: Color.fromRGBO(255, 200, 87, 1),
             toolbarHeight: 50,
             centerTitle: true,
-            title: Text(titleName[indexNumber], style: TextStyle(color: Colors.white, fontSize: 22.5),),
+            title: Text(
+              titleName[indexNumber],
+              style: TextStyle(color: Colors.white, fontSize: 22.5),
+            ),
             flexibleSpace: Center(
               child: Padding(
-                padding: EdgeInsets.fromLTRB(width*0.75, 0, 0, 0),
+                padding: EdgeInsets.fromLTRB(width * 0.75, 0, 0, 0),
                 child: Container(
                     height: 55,
-                    child: Image.asset('assets/isb_logo.png',)
-                ),
+                    child: Image.asset(
+                      'assets/isb_logo.png',
+                    )),
               ),
             ),
             leading: IconButton(
-              padding: EdgeInsets.fromLTRB(width*0.05, 0, 0, 0),
-              icon: Image.asset('assets/sidebar_icon.png', height: 50,),
+              padding: EdgeInsets.fromLTRB(width * 0.05, 0, 0, 0),
+              icon: Image.asset(
+                'assets/sidebar_icon.png',
+                height: 50,
+              ),
               onPressed: () => _scaffoldKey.currentState.openDrawer(),
             ),
           ),
@@ -90,16 +101,28 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
                   sizedBox(),
                   Container(
                     child: Center(
-                      child: Text("${googleAPI.name}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),),
+                      child: Text(
+                        "${googleAPI.name}",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
                     ),
                   ),
                   sizedBox(),
                   ListTile(
-                    contentPadding: EdgeInsets.fromLTRB(width*0.05, 0, width*0.42, 0),
-                    trailing: Icon(Icons.person_outline_sharp, color: Colors.black,),
-                    title: Text("About Us", style: TextStyle(fontSize: 17, color: Colors.black)),
+                    contentPadding:
+                        EdgeInsets.fromLTRB(width * 0.05, 0, width * 0.42, 0),
+                    trailing: Icon(
+                      Icons.person_outline_sharp,
+                      color: Colors.black,
+                    ),
+                    title: Text("About Us",
+                        style: TextStyle(fontSize: 17, color: Colors.black)),
                     onTap: () async {
-                      final url = 'https://communicationapp.isb.ac.th/uploads/About_Us_Page.pdf';
+                      final url =
+                          'http://54.255.62.155/uploads/About_Us_Page.pdf';
                       await PDFApi().loadNetwork(url, 'About Us').then((value) {
                         setState(() {
                           localPath = value;
@@ -108,30 +131,36 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
                       Navigator.of(context).pop();
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => Scaffold(
-                          appBar: ShareItem().AppBarCus(context),
-                          body: localPath != null ? PDFView(
-                            filePath: localPath,
-                            fitPolicy: FitPolicy.WIDTH,
-                            pageSnap: true,
-                          )
-                              : Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )),
+                        MaterialPageRoute(
+                            builder: (context) => Scaffold(
+                                  appBar: ShareItem().AppBarCus(context),
+                                  body: localPath != null
+                                      ? PDFView(
+                                          filePath: localPath,
+                                          fitPolicy: FitPolicy.HEIGHT,
+                                        )
+                                      : Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                )),
                       );
                     },
                   ),
                   ListTile(
-                      contentPadding: EdgeInsets.fromLTRB(width*0.05, 0, width*0.42, 0),
-                      trailing: Icon(Icons.logout, color: Colors.black,),
-                      title: Text("Log Out", style: TextStyle(fontSize: 17, color: Colors.black)),
+                      contentPadding:
+                          EdgeInsets.fromLTRB(width * 0.05, 0, width * 0.42, 0),
+                      trailing: Icon(
+                        Icons.logout,
+                        color: Colors.black,
+                      ),
+                      title: Text("Log Out",
+                          style: TextStyle(fontSize: 17, color: Colors.black)),
                       onTap: () {
-                        final provider =
-                        Provider.of<GoogleSignInProvider>(context, listen: false);
+                        final provider = Provider.of<GoogleSignInProvider>(
+                            context,
+                            listen: false);
                         provider.logout();
-                      }
-                  ),
+                      }),
                 ],
               ),
             ),
@@ -141,25 +170,40 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
             unselectedItemColor: Colors.grey,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Image.asset('assets/announcement.png', height: 30,),
+                icon: Image.asset(
+                  'assets/announcement.png',
+                  height: 30,
+                ),
                 label: 'Announcement',
-                activeIcon: Image.asset('assets/announcement_yellow.png', height: 30),
+                activeIcon:
+                    Image.asset('assets/announcement_yellow.png', height: 30),
                 //backgroundColor: Color.fromRGBO(255, 200, 87, 1),
               ),
               BottomNavigationBarItem(
-                icon: Image.asset('assets/schedule.png', height: 30,),
+                icon: Image.asset(
+                  'assets/schedule.png',
+                  height: 30,
+                ),
                 label: 'Schedule',
-                activeIcon: Image.asset('assets/schedule_yellow.png', height: 30),
+                activeIcon:
+                    Image.asset('assets/schedule_yellow.png', height: 30),
                 //backgroundColor: Color.fromRGBO(255, 200, 87, 1),
               ),
               BottomNavigationBarItem(
-                icon: Image.asset('assets/resources.png', height: 30,),
+                icon: Image.asset(
+                  'assets/resources.png',
+                  height: 30,
+                ),
                 label: 'Resources',
-                activeIcon: Image.asset('assets/resources_yellow.png', height: 30),
+                activeIcon:
+                    Image.asset('assets/resources_yellow.png', height: 30),
                 //backgroundColor: Color.fromRGBO(255, 200, 87, 1),
               ),
               BottomNavigationBarItem(
-                icon: Image.asset('assets/class.png', height: 30,),
+                icon: Image.asset(
+                  'assets/class.png',
+                  height: 30,
+                ),
                 label: 'Class Page',
                 activeIcon: Image.asset('assets/class_yellow.png', height: 30),
                 //backgroundColor: Color.fromRGBO(57,58,86, 1),
@@ -173,7 +217,7 @@ class _CusBottomNavigationBar extends State<CusBottomNavigationBar> {
     );
   }
 
-  Container sizedBox(){
+  Container sizedBox() {
     return Container(
       height: 20,
     );
