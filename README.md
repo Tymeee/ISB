@@ -1,6 +1,6 @@
 # app_isb
 
-A new Flutter application.
+ISB's mobile application built with flutter and using Google Firebase
 
 ## Getting Started
 
