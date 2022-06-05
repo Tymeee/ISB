@@ -1,4 +1,4 @@
-# app_isb
+# ISB App
 
 ISB's mobile application built with flutter and using Google Firebase
 
